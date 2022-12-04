@@ -4,8 +4,11 @@ import com.google.gson.Gson;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -68,6 +71,20 @@ public class ListMoviesController {
 
     @FXML
     public void insertClick(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("create-movie-view.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 400, 300);
+            Stage stage = new Stage();
+            stage.setTitle("Add Movie");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Figyelem!");
+            alert.setHeaderText("A törléshez kérem válasszon ki egy elemet!");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML

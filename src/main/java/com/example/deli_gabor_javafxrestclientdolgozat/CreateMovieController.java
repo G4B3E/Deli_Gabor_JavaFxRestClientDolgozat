@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 
 public class CreateMovieController {
@@ -16,6 +17,13 @@ public class CreateMovieController {
     private Spinner<Integer> YearField;
     @FXML
     private Button SubmitButton;
+
+    @FXML
+    private void initialize(){
+        SpinnerValueFactory.IntegerSpinnerValueFactory valueFactory =
+                new SpinnerValueFactory.IntegerSpinnerValueFactory(0,2022,1970);
+        YearField.setValueFactory(valueFactory);
+    }
 
     @FXML
     public void SubmitClick(ActionEvent actionEvent) {
