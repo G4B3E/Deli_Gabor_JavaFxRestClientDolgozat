@@ -1,5 +1,6 @@
 package com.example.deli_gabor_javafxrestclientdolgozat;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -40,7 +41,10 @@ public class ListMoviesController {
             alert.setTitle("Hiba");
             alert.setHeaderText("Hiba történt az adatok lekérdezése során!");
             alert.setContentText(e.getMessage());
-            alert.show();
+            Platform.runLater(() -> {
+                alert.show();
+            });
+
         }
 
     }
