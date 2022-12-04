@@ -42,7 +42,8 @@ public class ListMoviesController {
             alert.setHeaderText("Hiba történt az adatok lekérdezése során!");
             alert.setContentText(e.getMessage());
             Platform.runLater(() -> {
-                alert.show();
+                alert.showAndWait();
+                Platform.exit();
             });
 
         }
