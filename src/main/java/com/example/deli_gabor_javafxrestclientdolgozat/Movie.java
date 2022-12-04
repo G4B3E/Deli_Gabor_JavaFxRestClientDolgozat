@@ -1,9 +1,14 @@
 package com.example.deli_gabor_javafxrestclientdolgozat;
 
+import com.google.gson.annotations.Expose;
+
 public class Movie {
     private int id;
+    @Expose
     private int Year;
+    @Expose
     private String Movies;
+    @Expose
     private String Prizes;
 
     public Movie(int id, int year, String movies, String prizes) {
