@@ -93,6 +93,7 @@ public class ListMoviesController {
             String url = App.BASE_URL + "/" + selected.getId();
             try {
                 RequestHandler.delete(url);
+                LoadMoviesFromServer();
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Hiba!");
