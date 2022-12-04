@@ -10,6 +10,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 
 public class ListMoviesController {
 
@@ -39,13 +40,7 @@ public class ListMoviesController {
         prizeCol.setCellValueFactory(new PropertyValueFactory<>("prizes"));
         Platform.runLater(() -> {
             try {
-                Response response  = RequestHandler.get(App.BASE_URL);
-                String content = response.getContent();
-                Gson converter = new Gson();
-                Movie[] movies = converter.fromJson(content, Movie[].class);
-                for (Movie movie: movies){
-                    moviesTable.getItems().add(movie);
-                }
+                LoadMoviesFromServer();
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Hiba!");
@@ -59,6 +54,18 @@ public class ListMoviesController {
         });
 
     }
+
+    private void LoadMoviesFromServer() throws IOException {
+        Response response  = RequestHandler.get(App.BASE_URL);
+        String content = response.getContent();
+        Gson converter = new Gson();
+        Movie[] movies = converter.fromJson(content, Movie[].class);
+        moviesTable.getItems().clear();
+        for (Movie movie: movies){
+            moviesTable.getItems().add(movie);
+        }
+    }
+
     @FXML
     public void insertClick(ActionEvent actionEvent) {
     }
@@ -78,8 +85,20 @@ public class ListMoviesController {
             return;
         }
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmation.setTitle("Törlés?");
+        confirmation.setTitle("Figyelem!");
         confirmation.setHeaderText("Biztosan törölni szeretné?");
-        confirmation.showAndWait();
+        Optional<ButtonType> optionalButtonType = confirmation.showAndWait();
+        if (optionalButtonType.isPresent() && optionalButtonType.get().equals(ButtonType.OK)
+        ) {
+            String url = App.BASE_URL + "/" + selected.getId();
+            try {
+                RequestHandler.delete(url);
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Hiba!");
+                alert.setHeaderText("Nem sikerült csatlakozni a szerverhez!");
+                alert.showAndWait();
+            }
+        }
     }
 }
