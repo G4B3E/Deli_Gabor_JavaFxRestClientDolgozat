@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox prefHeight="600.0" prefWidth="600.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/19" fx:controller="com.example.deli_gabor_javafxrestclientdolgozat.ListMoviesController">
+<VBox prefHeight="600.0" prefWidth="600.0" spacing="20.0" style="-fx-background-color: lightblue; -fx-border-color: black;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.deli_gabor_javafxrestclientdolgozat.ListMoviesController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -19,7 +19,7 @@
             <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClick" text="Delete" />
          </children>
       </HBox>
-      <TableView fx:id="moviesTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="moviesTable" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: black; -fx-background-color: white;" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="idCol" minWidth="50.0" prefWidth="75.0" text="ID" />
           <TableColumn fx:id="movieCol" minWidth="50.0" prefWidth="200.0" text="Movie" />

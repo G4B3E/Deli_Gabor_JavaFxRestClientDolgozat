@@ -2,15 +2,15 @@ package com.example.deli_gabor_javafxrestclientdolgozat;
 
 public class Movie {
     private int id;
-    private String name;
-    private int year;
-    private String prize;
+    private int Year;
+    private String Movies;
+    private String Prizes;
 
-    public Movie(int id, String name, int year, String prize) {
+    public Movie(int id, int year, String movies, String prizes) {
         this.id = id;
-        this.name = name;
-        this.year = year;
-        this.prize = prize;
+        Year = year;
+        Movies = movies;
+        Prizes = prizes;
     }
 
     public int getId() {
@@ -21,27 +21,31 @@ public class Movie {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public int getYear() {
-        return year;
+        return Year;
     }
 
     public void setYear(int year) {
-        this.year = year;
+        Year = year;
     }
 
-    public String getPrize() {
-        return prize;
+    public String getMovies() {
+        return Movies;
     }
 
-    public void setPrize(String prize) {
-        this.prize = prize;
+    public void setMovies(String movies) {
+        Movies = movies;
+    }
+
+    public String getPrizes() {
+        return Prizes;
+    }
+
+    public void setPrizes(String prizes) {
+        Prizes = prizes;
     }
 }
+
+
+
+
