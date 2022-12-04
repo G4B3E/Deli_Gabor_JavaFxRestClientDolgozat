@@ -69,5 +69,17 @@ public class ListMoviesController {
 
     @FXML
     public void deleteClick(ActionEvent actionEvent) {
+        Movie selected = moviesTable.getSelectionModel().getSelectedItem();
+        if (selected == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Figyelem!");
+            alert.setHeaderText("A törléshez kérem válasszon ki egy elemet!");
+            alert.showAndWait();
+            return;
+        }
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Törlés?");
+        confirmation.setHeaderText("Biztosan törölni szeretné?");
+        confirmation.showAndWait();
     }
 }
